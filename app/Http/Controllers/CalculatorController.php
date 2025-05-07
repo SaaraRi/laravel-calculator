@@ -8,7 +8,10 @@ class CalculatorController extends Controller
 {
     public function index()
     {
-        return view('calculator');
+        return view('calculator', [
+            'result' => null,
+            'message' => null,
+        ]);
     }
 
     public function calculate(Request $request)
@@ -26,7 +29,7 @@ class CalculatorController extends Controller
         $number_input1 = $request->input('number_input1');
         $number_input2 = $request->input('number_input2');
         $operation = $request->input('operation');
-        $result = 0;
+        $result = null;
         $message = "";
 
         if ($operation === 'add') {
@@ -36,15 +39,19 @@ class CalculatorController extends Controller
         } elseif ($operation === 'multiply') {
             $result = $number_input1 * $number_input2;
         } elseif ($operation === 'divide') {
-            if ($number_input2 == 0) {
-                $message = "Numbers can't be divided by 0! &#9785;";
-            } else {
+            if ($number_input2 > 0) {
                 $result = $number_input1 / $number_input2;
+            } else {
+                $result = null;
+                $message = "Numbers can't be divided by 0!";
             }
         } else {
-            $message = "Input numbers and pick an operation to get a result &#9786;";
+            $message = "Input numbers and pick an operation to get a result";
         }
-        $result = round($result, 9);
+
+        if (!is_null($result)) {
+            $result = round($result, 9);
+        }
 
         return view('calculator', [
             'number_input1' => $number_input1,

@@ -36,10 +36,18 @@
             <input type="submit" class="btn" id="reset" name="reset" value="c">
 
             <div class="result-box">
-                @if (isset($result))
+
+                @if ($errors->any())
+                    <ul class="error-list">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                @if (!is_null($result))
                     <p id="result">{{ $result }}</p>
                 @endif
-                @if (isset($message))
+                @if (!empty($message))
                     <p id="message">{{ $message }}</p>
                 @endif
             </div>
