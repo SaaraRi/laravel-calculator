@@ -4,7 +4,7 @@
 <head>
     <title>Calculator Application</title>
     <link rel="icon" href="{{ asset('icons8-calculator-color-32.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Nabla&family=Silkscreen:wght@400;700&display=swap"
         rel="stylesheet">
 
